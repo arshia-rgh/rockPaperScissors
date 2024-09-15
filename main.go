@@ -84,6 +84,8 @@ func leaderboard_menu() {
 	for _, user := range users {
 		table.Append([]string{user.name, fmt.Sprintf("%v", user.score)})
 	}
+
+	table.Render()
 }
 func main() {
 
