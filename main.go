@@ -75,6 +75,9 @@ func create_new_player() {
 	users = append(users, user)
 }
 
+func leaderboard_menu() {
+
+}
 func main() {
 
 }
