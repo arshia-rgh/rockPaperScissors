@@ -2,14 +2,14 @@ package main
 
 import "fmt"
 
-type user struct {
+type User struct {
 	name  string
 	score int
 }
 
 var rockPaperScissors = map[int]string{1: "rock", 2: "paper", 3: "scissors"}
 
-var scores = map[struct{}]int{}
+var users []User
 
 func main_menu() int {
 	fmt.Println("*****************************")
@@ -44,6 +44,29 @@ func start_game_menu() int {
 	}
 
 	return option
+}
+
+func create_new_player() {
+	var name string
+
+	fmt.Println("Please enter your name : ")
+
+	_, err := fmt.Scan(&name)
+
+	if err != nil {
+		return
+	}
+
+	for _, u := range users {
+		if u.name == name {
+			fmt.Println("A user with this name already exists")
+			create_new_player()
+		}
+	}
+
+	var user = User{name: name, score: 0}
+
+	users = append(users, user)
 }
 
 func main() {
