@@ -2,6 +2,11 @@ package main
 
 import "fmt"
 
+type user struct {
+	name  string
+	score int
+}
+
 var rockPaperScissors = map[int]string{1: "rock", 2: "paper", 3: "scissors"}
 
 var scores = map[struct{}]int{}
