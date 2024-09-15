@@ -57,17 +57,15 @@ func create_new_player() {
 		return
 	}
 
-	if name == "" {
+	if !isValidName(name) {
 		fmt.Println("The name must contain at least one character ")
-
 		create_new_player()
+
 	}
 
-	for _, u := range users {
-		if u.name == name {
-			fmt.Println("A user with this name already exists")
-			create_new_player()
-		}
+	if userExists(name) {
+		fmt.Println("User with this name already exists.")
+		create_new_player()
 	}
 
 	var user = User{name: name, score: 0}
