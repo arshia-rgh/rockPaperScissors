@@ -29,6 +29,23 @@ func main_menu() int {
 	return option
 }
 
+func start_game_menu() int {
+	fmt.Println("Welcome---")
+	fmt.Println("Please Enter your choice: ")
+	fmt.Println("1 - Play vs ai")
+	fmt.Println("2 - Play vs Player")
+	fmt.Println("3 - Back to main menu")
+	var option int
+
+	_, err := fmt.Scan(&option)
+
+	if err != nil {
+		return 0
+	}
+
+	return option
+}
+
 func main() {
 
 }
