@@ -57,6 +57,12 @@ func create_new_player() {
 		return
 	}
 
+	if name == "" {
+		fmt.Println("The name must contain at least one character ")
+
+		create_new_player()
+	}
+
 	for _, u := range users {
 		if u.name == name {
 			fmt.Println("A user with this name already exists")
