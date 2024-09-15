@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/olekukonko/tablewriter"
+	"os"
 )
 
 type User struct {
@@ -76,7 +78,12 @@ func create_new_player() {
 }
 
 func leaderboard_menu() {
+	table := tablewriter.NewWriter(os.Stdout)
 
+	table.SetHeader([]string{"Name", "Score"})
+	for _, user := range users {
+		table.Append([]string{user.name, fmt.Sprintf("%v", user.score)})
+	}
 }
 func main() {
 
