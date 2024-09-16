@@ -3,10 +3,9 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"strings"
 	"time"
 )
-
-var rockPaperScissors = map[int]string{1: "rock", 2: "paper", 3: "scissors"}
 
 func getWinner(playerNumber, aiNumber int) int {
 	var winCondition = map[int]map[int]int{
@@ -50,6 +49,37 @@ func gameAi() {
 		}
 
 		winner := getWinner(playerNumber, aiNumber)
+
+		if winner == playerNumber {
+			playerScore++
+			fmt.Println("Congratulations you won this round !")
+
+		} else {
+			aiScore++
+			fmt.Println("You lost... !")
+
+		}
+		fmt.Print("Wanna play another match: (yes-no)")
+		var isRetry string
+
+		_, err = fmt.Scan(&isRetry)
+		if err != nil {
+			return
+		}
+
+		if strings.ToLower(isRetry) != "yes" {
+			break
+		}
+
+	}
+
+	if playerScore > aiScore {
+		fmt.Println("You won totally")
+		player.score++
+	} else if playerScore < aiScore {
+		fmt.Println("You lost totally")
+	} else {
+		fmt.Println("Draw... !")
 	}
 }
 
