@@ -35,3 +35,32 @@ func create_new_player() {
 
 	users = append(users, user)
 }
+
+func select_player() *User {
+	fmt.Println("Please select the player you want to play as: ")
+
+	if len(users) != 0 {
+		for i, user := range users {
+			fmt.Printf("%v - %v", i, user)
+		}
+
+		var chosenUser int
+		fmt.Print("Chosen name: (Should enter the number) ")
+		_, err := fmt.Scan(&chosenUser)
+		if err != nil {
+			return nil
+		}
+
+		if chosenUser >= 0 && chosenUser < len(users) {
+			return &users[chosenUser]
+		}
+
+		fmt.Println("Invalid user selection.")
+		return nil
+
+	}
+
+	fmt.Println("There is no players registered...")
+
+	return nil
+}
