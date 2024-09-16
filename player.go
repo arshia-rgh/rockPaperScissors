@@ -9,7 +9,7 @@ type User struct {
 
 var users []User
 
-func create_new_player() {
+func createNewPlayer() {
 	var name string
 
 	fmt.Println("Please enter your name : ")
@@ -22,13 +22,13 @@ func create_new_player() {
 
 	if !isValidName(name) {
 		fmt.Println("The name must contain at least one character ")
-		create_new_player()
+		createNewPlayer()
 
 	}
 
 	if userExists(name) {
 		fmt.Println("User with this name already exists.")
-		create_new_player()
+		createNewPlayer()
 	}
 
 	var user = User{name: name, score: 0}
@@ -36,7 +36,7 @@ func create_new_player() {
 	users = append(users, user)
 }
 
-func select_player() *User {
+func selectPlayer() *User {
 	fmt.Println("Please select the player you want to play as: ")
 
 	if len(users) != 0 {

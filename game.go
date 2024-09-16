@@ -12,8 +12,8 @@ func getWinner(playerNumber, aiNumber int) int {
 
 }
 
-func game_ai() {
-	player := select_player()
+func gameAi() {
+	player := selectPlayer()
 
 	if player == nil {
 		fmt.Println("Create a player first")
@@ -47,6 +47,6 @@ func game_ai() {
 	}
 }
 
-func game_player() {
+func gamePlayer() {
 
 }

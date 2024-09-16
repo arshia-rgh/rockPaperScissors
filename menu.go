@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-func main_menu() int {
+func mainMenu() int {
 	fmt.Println("*****************************")
 	fmt.Println("**********Welcome************")
 	fmt.Println("Please enter what do you want to do: ")
@@ -24,7 +24,7 @@ func main_menu() int {
 	return option
 }
 
-func start_game_menu() int {
+func startGameMenu() int {
 	fmt.Println("Welcome---")
 	fmt.Println("Please Enter your choice: ")
 	fmt.Println("1 - Play vs ai")
@@ -41,7 +41,7 @@ func start_game_menu() int {
 	return option
 }
 
-func leaderboard_menu() {
+func leaderboardMenu() {
 	table := tablewriter.NewWriter(os.Stdout)
 
 	table.SetHeader([]string{"Name", "Score"})
