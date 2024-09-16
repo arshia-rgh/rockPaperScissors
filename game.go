@@ -9,7 +9,13 @@ import (
 var rockPaperScissors = map[int]string{1: "rock", 2: "paper", 3: "scissors"}
 
 func getWinner(playerNumber, aiNumber int) int {
+	var winCondition = map[int]map[int]int{
+		1: {2: 2, 3: 1},
+		2: {1: 2, 3: 3},
+		3: {1: 1, 2: 3},
+	}
 
+	return winCondition[playerNumber][aiNumber]
 }
 
 func gameAi() {
