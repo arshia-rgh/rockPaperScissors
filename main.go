@@ -31,13 +31,26 @@ func main() {
 			}
 
 		} else if selected == 2 {
+			createNewPlayer()
+			fmt.Println("Please select anything to redirect ...")
+			_, err := fmt.Scan()
+			if err != nil {
+				return
+			}
+			continue
 
 		} else if selected == 3 {
-
-		} else if selected == 4 {
+			leaderboardMenu()
+			fmt.Println("Please select anything to redirect ...")
+			_, err := fmt.Scan()
+			if err != nil {
+				return
+			}
+			continue
 
 		} else {
-
+			fmt.Println("Goodbye...")
+			break
 		}
 	}
 }
