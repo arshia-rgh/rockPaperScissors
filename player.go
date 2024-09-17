@@ -41,7 +41,7 @@ func selectPlayer() *User {
 
 	if len(users) != 0 {
 		for i, user := range users {
-			fmt.Printf("%v - %v", i, user)
+			fmt.Printf("%v - %v\n", i+1, user)
 		}
 
 		var chosenUser int
@@ -51,8 +51,8 @@ func selectPlayer() *User {
 			return nil
 		}
 
-		if chosenUser >= 0 && chosenUser < len(users) {
-			return &users[chosenUser]
+		if chosenUser >= 1 && chosenUser < len(users)+1 {
+			return &users[chosenUser-1]
 		}
 
 		fmt.Println("Invalid user selection.")
