@@ -132,6 +132,11 @@ func gamePlayer() {
 		if winner == player1Choice {
 			fmt.Printf("Player %v won the round", player1.name)
 			player1Score++
-		} else
+		} else if winner == player2Choice {
+			fmt.Printf("Player %v won the round", player2.name)
+			player2Score++
+		} else {
+			fmt.Println("Draw ... !")
+		}
 	}
 }
