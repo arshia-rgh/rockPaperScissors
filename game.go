@@ -84,5 +84,52 @@ func gameAi() {
 }
 
 func gamePlayer() {
+	player1 := selectPlayer()
+	player2 := selectPlayer()
+	var player1Score = 0
+	var player2Score = 0
 
+	for player1 == player2 {
+		player2 = selectPlayer()
+	}
+
+	for {
+		fmt.Printf("The game will be start with %v and %v\n", player1.name, player2.name)
+		fmt.Println("The game will be start in 3s ...")
+		time.Sleep(3)
+
+		fmt.Println("1 - ROCK")
+		fmt.Println("2 - PAPER")
+		fmt.Println("3 - SCISSORS")
+		var player1Choice int
+		var player2Choice int
+
+		fmt.Printf("Whats your choice %v : \n", player1.name)
+		_, err := fmt.Scan(&player1Choice)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+
+		fmt.Printf("Whats your choice %v : \n", player2.name)
+
+		_, err = fmt.Scan(&player2Choice)
+
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+
+		if player1Choice < 1 || player1Choice > 3 || player2Choice < 1 || player2Choice > 3 {
+			fmt.Println("Invalid choice. Please choose 1, 2 or 3")
+			continue
+		}
+
+		winner := getWinner(player1Choice, player2Choice)
+
+		if winner == player1Choice {
+			fmt.Printf("Player %v won the round", player1.name)
+			player1Score ++
+		} else
+	}
 }
