@@ -13,7 +13,7 @@ func main() {
 			if selectedInStartMenue == 1 {
 				gameAi()
 				fmt.Println("Please enter anything to redirect... ")
-				_, err := fmt.Scan()
+				_, err := fmt.Scanln()
 				if err != nil {
 					return
 				}
@@ -21,7 +21,7 @@ func main() {
 			} else if selectedInStartMenue == 2 {
 				gamePlayer()
 				fmt.Println("Please select anything to redirect ...")
-				_, err := fmt.Scan()
+				_, err := fmt.Scanln()
 				if err != nil {
 					return
 				}
@@ -33,7 +33,7 @@ func main() {
 		} else if selected == 2 {
 			createNewPlayer()
 			fmt.Println("Please select anything to redirect ...")
-			_, err := fmt.Scan()
+			_, err := fmt.Scanln()
 			if err != nil {
 				return
 			}
@@ -42,7 +42,7 @@ func main() {
 		} else if selected == 3 {
 			leaderboardMenu()
 			fmt.Println("Please select anything to redirect ...")
-			_, err := fmt.Scan()
+			_, err := fmt.Scanln()
 			if err != nil {
 				return
 			}
