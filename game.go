@@ -54,10 +54,12 @@ func gameAi() {
 			playerScore++
 			fmt.Println("Congratulations you won this round !")
 
-		} else {
+		} else if winner == aiNumber {
 			aiScore++
 			fmt.Println("You lost... !")
 
+		} else {
+			fmt.Println("Draw ... !")
 		}
 		fmt.Print("Wanna play another match: (yes-no)")
 		var isRetry string
