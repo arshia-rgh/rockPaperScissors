@@ -130,13 +130,36 @@ func gamePlayer() {
 		winner := getWinner(player1Choice, player2Choice)
 
 		if winner == player1Choice {
-			fmt.Printf("Player %v won the round", player1.name)
+			fmt.Printf("Player %v won the round\n", player1.name)
 			player1Score++
 		} else if winner == player2Choice {
-			fmt.Printf("Player %v won the round", player2.name)
+			fmt.Printf("Player %v won the round\n", player2.name)
 			player2Score++
 		} else {
 			fmt.Println("Draw ... !")
 		}
+
+		fmt.Print("Wanna play another match: (yes-no)")
+		var isRetry string
+
+		_, err = fmt.Scan(&isRetry)
+		if err != nil {
+			return
+		}
+
+		if strings.ToLower(isRetry) != "yes" {
+			break
+		}
+
+	}
+
+	if player1Score > player2Score {
+		fmt.Printf("Player %v won totally\n", player1.name)
+		player1.score++
+	} else if player1Score < player2Score {
+		fmt.Printf("Player %v won totally\n", player2.name)
+		player2.score++
+	} else {
+		fmt.Println("Draw ... !")
 	}
 }
