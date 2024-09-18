@@ -9,9 +9,9 @@ import (
 
 func getWinner(playerNumber, aiNumber int) int {
 	var winCondition = map[int]map[int]int{
-		1: {2: 2, 3: 1},
-		2: {1: 2, 3: 3},
-		3: {1: 1, 2: 3},
+		1: {2: 2, 3: 1, 1: 0},
+		2: {1: 2, 3: 3, 2: 0},
+		3: {1: 1, 2: 3, 3: 0},
 	}
 
 	return winCondition[playerNumber][aiNumber]
@@ -129,7 +129,7 @@ func gamePlayer() {
 
 		if winner == player1Choice {
 			fmt.Printf("Player %v won the round", player1.name)
-			player1Score ++
+			player1Score++
 		} else
 	}
 }
