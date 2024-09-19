@@ -7,6 +7,7 @@ import (
 	"gorm.io/gorm"
 	"log"
 	"os"
+	"rockPaperScissors/db/migrations"
 )
 
 var DB *gorm.DB
@@ -34,4 +35,12 @@ func ConnectDatabase() {
 
 	DB = database
 
+}
+
+func MigrateDatabase() {
+	err := migrations.CreateUsersTable(DB)
+
+	if err != nil {
+		log.Fatal("Filed to run migrations: ", err)
+	}
 }
