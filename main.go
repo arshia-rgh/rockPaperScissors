@@ -24,13 +24,23 @@ func main() {
 	userRepository = repositories.NewUserRepository(db.DB)
 
 	for {
-		selected := mainMenu()
+		selected, err := mainMenu()
+
+		if err != nil {
+			log.Fatal("Failed to chose main menu option", err)
+			return
+		}
 
 		if selected == 1 {
 
-			selectedInStartMenue := startGameMenu()
+			selectedInStartMenu, err := startGameMenu()
 
-			if selectedInStartMenue == 1 {
+			if err != nil {
+				log.Fatal("Failed to chose start game  menu option", err)
+				return
+			}
+
+			if selectedInStartMenu == 1 {
 				gameAi()
 				fmt.Println("Please enter anything to redirect... ")
 				_, err := fmt.Scanln()
@@ -38,7 +48,7 @@ func main() {
 					return
 				}
 
-			} else if selectedInStartMenue == 2 {
+			} else if selectedInStartMenu == 2 {
 				gamePlayer()
 				fmt.Println("Please select anything to redirect ...")
 				_, err := fmt.Scanln()
@@ -64,9 +74,14 @@ func main() {
 			continue
 
 		} else if selected == 3 {
-			leaderboardMenu()
+			err := leaderboardMenu()
+			if err != nil {
+				log.Fatal("Something failed in leaderboard menu", err)
+				return
+			}
+
 			fmt.Println("Please select anything to redirect ...")
-			_, err := fmt.Scanln()
+			_, err = fmt.Scanln()
 			if err != nil {
 				return
 			}
