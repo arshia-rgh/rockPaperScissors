@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"rockPaperScissors/db"
+	"rockPaperScissors/repositories"
 )
 
 func main() {
@@ -17,6 +18,8 @@ func main() {
 	if err != nil {
 		log.Fatal("Could not `migrate` to the database", err)
 	}
+
+	userRepository := repositories.NewUserRepository(db.DB)
 
 	for {
 		selected := mainMenu()
