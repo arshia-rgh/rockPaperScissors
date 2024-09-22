@@ -7,6 +7,8 @@ import (
 	"rockPaperScissors/repositories"
 )
 
+var userRepository *repositories.UserRepository
+
 func main() {
 	err := db.ConnectDatabase()
 
@@ -19,7 +21,7 @@ func main() {
 		log.Fatal("Could not `migrate` to the database", err)
 	}
 
-	userRepository := repositories.NewUserRepository(db.DB)
+	userRepository = repositories.NewUserRepository(db.DB)
 
 	for {
 		selected := mainMenu()
