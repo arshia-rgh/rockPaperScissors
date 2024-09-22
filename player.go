@@ -26,7 +26,13 @@ func createNewPlayer() error {
 
 	}
 
-	if userExists(name) {
+	exists, err := userExists(name)
+
+	if err != nil {
+		return err
+	}
+
+	if exists {
 		fmt.Println("User with this name already exists.")
 		err := createNewPlayer()
 		if err != nil {
