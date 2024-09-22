@@ -26,3 +26,7 @@ func (r *UserRepository) GetUserByID(id uint) (*models.User, error) {
 
 	return &user, err
 }
+
+func (r *UserRepository) UpdateUser(user *models.User) error {
+	return r.DB.Updates(user).Error
+}
