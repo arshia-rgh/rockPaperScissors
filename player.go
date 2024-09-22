@@ -2,13 +2,6 @@ package main
 
 import "fmt"
 
-type User struct {
-	name  string
-	score int
-}
-
-var users []User
-
 func createNewPlayer() {
 	var name string
 
