@@ -1,8 +1,23 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+	"rockPaperScissors/db"
+)
 
 func main() {
+	err := db.ConnectDatabase()
+
+	if err != nil {
+		log.Fatal("Could not `connect` to the database", err)
+	}
+
+	err = db.MigrateDatabase()
+	if err != nil {
+		log.Fatal("Could not `migrate` to the database", err)
+	}
+
 	for {
 		selected := mainMenu()
 
