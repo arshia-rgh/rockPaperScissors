@@ -55,7 +55,13 @@ func main() {
 				}
 
 			} else if selectedInStartMenu == 2 {
-				gamePlayer()
+				err = gamePlayer()
+
+				if err != nil {
+					log.Fatal("something failed in game: ", err)
+					return
+				}
+
 				fmt.Println("Please select anything to redirect ...")
 				_, err := fmt.Scanln()
 				if err != nil {
