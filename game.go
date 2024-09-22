@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"math/rand"
 	"strings"
@@ -17,12 +18,16 @@ func getWinner(playerNumber, aiNumber int) int {
 	return winCondition[playerNumber][aiNumber]
 }
 
-func gameAi() {
-	player := selectPlayer()
+func gameAi() error {
+	player, err := selectPlayer()
+
+	if err != nil {
+		return err
+	}
 
 	if player == nil {
-		fmt.Println("Create a player first")
-		return
+		err = errors.New("please create a player first")
+		return err
 	}
 
 	var aiScore = 0
@@ -40,7 +45,7 @@ func gameAi() {
 
 		_, err := fmt.Scan(&playerNumber)
 		if err != nil {
-			return
+			return err
 		}
 
 		if playerNumber < 1 || playerNumber > 3 || aiNumber < 1 || aiNumber > 3 {
@@ -66,7 +71,7 @@ func gameAi() {
 
 		_, err = fmt.Scan(&isRetry)
 		if err != nil {
-			return
+			return err
 		}
 
 		if strings.ToLower(isRetry) != "yes" {
@@ -77,7 +82,13 @@ func gameAi() {
 
 	if playerScore > aiScore {
 		fmt.Println("You won totally")
-		player.score++
+		player.Score++
+		err = userRepository.UpdateUser(player)
+
+		if err != nil {
+			return err
+		}
+
 	} else if playerScore < aiScore {
 		fmt.Println("You lost totally")
 	} else {
