@@ -30,3 +30,7 @@ func (r *UserRepository) GetUserByID(id uint) (*models.User, error) {
 func (r *UserRepository) UpdateUser(user *models.User) error {
 	return r.DB.Updates(user).Error
 }
+
+func (r *UserRepository) DeleteUser(id uint) error {
+	return r.DB.Delete(id).Error
+}
