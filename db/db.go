@@ -5,18 +5,17 @@ import (
 	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"log"
 	"os"
 	"rockPaperScissors/db/migrations"
 )
 
 var DB *gorm.DB
 
-func ConnectDatabase() {
+func ConnectDatabase() error {
 	err := godotenv.Load()
 
 	if err != nil {
-		log.Fatal("Error loading .env file: ", err)
+		return err
 	}
 
 	dbUser := os.Getenv("DB_USER")
@@ -30,17 +29,20 @@ func ConnectDatabase() {
 	database, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	if err != nil {
-		log.Fatal("Failed to connect to the db: ", err)
+		return err
 	}
 
 	DB = database
 
+	return nil
 }
 
-func MigrateDatabase() {
+func MigrateDatabase() error {
 	err := migrations.CreateUsersTable(DB)
 
 	if err != nil {
-		log.Fatal("Filed to run migrations: ", err)
+		return err
 	}
+
+	return nil
 }
