@@ -41,13 +41,20 @@ func startGameMenu() int {
 	return option
 }
 
-func leaderboardMenu() {
+func leaderboardMenu() error {
 	table := tablewriter.NewWriter(os.Stdout)
 
 	table.SetHeader([]string{"Name", "Score"})
+	users, err := userRepository.GetAllUsers()
+
+	if err != nil {
+		return err
+	}
 	for _, user := range users {
-		table.Append([]string{user.name, fmt.Sprintf("%v", user.score)})
+		table.Append([]string{user.Name, fmt.Sprintf("%v", user.Score)})
 	}
 
 	table.Render()
+
+	return nil
 }
