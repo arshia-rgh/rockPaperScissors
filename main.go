@@ -41,7 +41,13 @@ func main() {
 			}
 
 			if selectedInStartMenu == 1 {
-				gameAi()
+				err = gameAi()
+
+				if err != nil {
+					log.Fatal("something failed in game: ", err)
+					return
+				}
+
 				fmt.Println("Please enter anything to redirect... ")
 				_, err := fmt.Scanln()
 				if err != nil {
