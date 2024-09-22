@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
+	"rockPaperScissors/models"
 )
 
-func createNewPlayer() {
+func createNewPlayer() error {
 	var name string
 
 	fmt.Println("Please enter your name : ")
@@ -12,23 +13,36 @@ func createNewPlayer() {
 	_, err := fmt.Scan(&name)
 
 	if err != nil {
-		return
+		return err
 	}
 
 	if !isValidName(name) {
 		fmt.Println("The name must contain at least one character ")
-		createNewPlayer()
+		err := createNewPlayer()
+		if err != nil {
+			return err
+		}
 
 	}
 
 	if userExists(name) {
 		fmt.Println("User with this name already exists.")
-		createNewPlayer()
+		err := createNewPlayer()
+		if err != nil {
+			return err
+		}
 	}
 
-	var user = User{name: name, score: 0}
+	user := models.NewUser(0, name, 0)
 
-	users = append(users, user)
+	err = userRepository.CreateUser(user)
+
+	if err != nil {
+		return err
+	}
+
+	return nil
+
 }
 
 func selectPlayer() *User {
