@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"rockPaperScissors/models"
 )
@@ -45,7 +46,13 @@ func createNewPlayer() error {
 
 }
 
-func selectPlayer() *User {
+func selectPlayer() (*models.User, error) {
+	users, err := userRepository.GetAllUsers()
+
+	if err != nil {
+		return nil, err
+	}
+
 	fmt.Println("Please select the player you want to play as: ")
 
 	if len(users) != 0 {
@@ -57,19 +64,20 @@ func selectPlayer() *User {
 		fmt.Print("Chosen name: (Should enter the number) ")
 		_, err := fmt.Scan(&chosenUser)
 		if err != nil {
-			return nil
+			return nil, err
 		}
 
 		if chosenUser >= 1 && chosenUser < len(users)+1 {
-			return &users[chosenUser-1]
+			return &users[chosenUser-1], nil
 		}
 
-		fmt.Println("Invalid user selection.")
-		return nil
+		err = errors.New("invalid user selection")
+
+		return nil, err
 
 	}
 
-	fmt.Println("There is no players registered...")
+	err = errors.New("there is no players registered")
 
-	return nil
+	return nil, err
 }
