@@ -6,7 +6,7 @@ type User struct {
 	ID        uint      `gorm:"primaryKey;autoIncrement"`
 	Name      string    `gorm:"size:100"`
 	Score     int       `gorm:"default:0"`
-	CreatedAt time.Time `gorm:"default:autoCreateTime"`
+	CreatedAt time.Time `gorm:"autoCreateTime"`
 }
 
 func NewUser(id uint, name string, score int) *User {
