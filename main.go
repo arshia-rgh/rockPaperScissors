@@ -51,9 +51,13 @@ func main() {
 			}
 
 		} else if selected == 2 {
-			createNewPlayer()
+			err := createNewPlayer()
+			if err != nil {
+				log.Fatal("Could not create new user", err)
+				return
+			}
 			fmt.Println("Please select anything to redirect ...")
-			_, err := fmt.Scanln()
+			_, err = fmt.Scanln()
 			if err != nil {
 				return
 			}
