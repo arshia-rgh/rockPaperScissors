@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-func mainMenu() int {
+func mainMenu() (int, error) {
 	fmt.Println("*****************************")
 	fmt.Println("**********Welcome************")
 	fmt.Println("Please enter what do you want to do: ")
@@ -18,13 +18,13 @@ func mainMenu() int {
 
 	_, err := fmt.Scan(&option)
 	if err != nil {
-		return 0
+		return 0, err
 	}
 
-	return option
+	return option, nil
 }
 
-func startGameMenu() int {
+func startGameMenu() (int, error) {
 	fmt.Println("Welcome---")
 	fmt.Println("Please Enter your choice: ")
 	fmt.Println("1 - Play vs ai")
@@ -35,10 +35,10 @@ func startGameMenu() int {
 	_, err := fmt.Scan(&option)
 
 	if err != nil {
-		return 0
+		return 0, err
 	}
 
-	return option
+	return option, nil
 }
 
 func leaderboardMenu() error {
